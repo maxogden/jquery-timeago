@@ -83,10 +83,10 @@
         years < 2 && substitute($l.year, 1) ||
         substitute($l.years, Math.floor(years));
 
-      return $.trim([prefix, words, suffix].join(" "));
+      return [prefix, words, suffix].join(" ").toString().trim();
     },
     parse: function(iso8601) {
-      var s = $.trim(iso8601);
+      var s = iso8601.trim();
       s = s.replace(/\.\d\d\d+/,""); // remove milliseconds
       s = s.replace(/-/,"/").replace(/-/,"/");
       s = s.replace(/T/," ").replace(/Z/," UTC");
@@ -124,7 +124,7 @@
     element = $(element);
     if (!element.data("timeago")) {
       element.data("timeago", { datetime: $t.datetime(element) });
-      var text = $.trim(element.text());
+      var text = element.text().trim();
       if (text.length > 0) {
         element.attr("title", text);
       }
@@ -143,4 +143,4 @@
   // fix for IE6 suckage
   document.createElement("abbr");
   document.createElement("time");
-}(jQuery));
+}(window.jQuery || window.Zepto));
