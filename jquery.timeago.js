@@ -86,7 +86,8 @@
       return [prefix, words, suffix].join(" ").toString().trim();
     },
     parse: function(iso8601) {
-      var s = iso8601.trim();
+      if (!iso8601) return
+      var s = iso8601.trim()
       s = s.replace(/\.\d\d\d+/,""); // remove milliseconds
       s = s.replace(/-/,"/").replace(/-/,"/");
       s = s.replace(/T/," ").replace(/Z/," UTC");
